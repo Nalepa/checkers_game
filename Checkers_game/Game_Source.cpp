@@ -77,8 +77,6 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 			auto_save.Save();
 		}
 		mouse_position = sf::Mouse::getPosition(game_window);
-		//std::cout << Head->Actual_Board.check_mouse_position(mouse_position.x, mouse_position.y);
-		//system("cls");
 
 		while (game_window.pollEvent(game_event))
 		{
@@ -347,22 +345,14 @@ void Game::check_pawn_to_queen_transformation(const field_index &temp_index)
 }
 Game::~Game()
 {
-	/*
-	List_Item *Temp, *Head2, *Temp2;
-	Head2 = Head->Previous;
+	std::cout << "destruktor klasy Game" << std::endl;
+	List_Item *Temp;
 	while (Head != nullptr)
 	{
 		Temp = Head;
-		Head = Temp->Next;
+		Head = Temp->Previous;
 		delete Temp;
 	}
-	while (Head2 != nullptr)
-	{
-		Temp2 = Head2;
-		Head2 = Temp2->Previous;
-		delete Temp2;
-	}
-	*/
 }
 int index(const int &width,const int &height,const int &size)
 {

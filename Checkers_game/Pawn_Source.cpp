@@ -52,7 +52,7 @@ bool Pawn::Circle_getGlobalBounds_contains(const int &mouse_position_x, const in
 }
 void Pawn::draw(sf::RenderWindow &game_window)
 {
-	if (type == queen) // mozna zoptymalizowaæ !!!!!
+	if (type == queen)
 	{
 		Circle.setOutlineThickness(7);
 		Circle.setOutlineColor(sf::Color::Yellow);
@@ -64,4 +64,4 @@ void Pawn::pawn_to_queen_transformation()
 	std::cout << "Zmieniam na dame" << std::endl;
 	type = queen;
 }
-//Pawn::~Pawn(){}
+Pawn::~Pawn(){ std::cout << "destruktor klasy Pawn" << std::endl; }

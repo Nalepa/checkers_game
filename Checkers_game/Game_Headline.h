@@ -1,11 +1,10 @@
 #pragma once
 #include "List_Item_Headline.h"
-//#include "Automatic_Game_Saving_Headline.h"
 
 class Game
 {
 	int dx, dy;
-	const int size = 8; // do usuniecia
+	const int size = 8;
 	List_Item* Head;
 	sf::Font font;
 	sf::Text text[5];
@@ -24,9 +23,6 @@ public:
 	void check_result();
 	void check_pawn_to_queen_transformation(const field_index &temp_index);
 	~Game();
-	friend class Field;
-	friend class Board;
-	friend class List_Item;
  };
 int index(const int &height, const int &width, const int &size);
 int index(const field_index &index_pom, const int &size);

@@ -11,9 +11,8 @@ List_Item* Game_Loading::Load()
 	{
 		std::string line;
 		getline(file, line);
-		if (line[0] == 'b') Head->next_move_colour = black; // Celowo na odwrot
+		if (line[0] == 'b') Head->next_move_colour = black; 
 		else Head->next_move_colour = white;
-		//wyjatki
 		int size = pow(Head->Actual_Board.size, 2);
 		for (int i = 0; i < size; i++)
 		{

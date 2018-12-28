@@ -28,7 +28,7 @@ public:
 	bool Circle_getGlobalBounds_contains(const int &mouse_position_x, const int& mouse_position_y);
 	void draw(sf::RenderWindow &Game_Window);
 	void pawn_to_queen_transformation();
-	//~Pawn();
+	~Pawn();
 
 };
 

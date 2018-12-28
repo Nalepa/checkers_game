@@ -1,11 +1,7 @@
 #include "stdafx.h"
 #include "List_Item_Headline.h"
 
-List_Item::List_Item(): Previous(nullptr), Next(nullptr), Actual_Board("plansza.jpg"), next_move_colour(black)
-{
-	
-
-}
+List_Item::List_Item(): Previous(nullptr), Next(nullptr), Actual_Board("plansza.jpg"), next_move_colour(black){}
 void List_Item::add_board()
 {
 	std::cout << "tworze element listy" << std::endl;
@@ -18,7 +14,7 @@ void List_Item::add_board()
 void List_Item::delete_last_board()
 {
 	Next->Previous = nullptr;
-	delete Next->Actual_Board.Tab;
+	//delete[] Next->Actual_Board.Tab;
 	delete Next;
 	Next = nullptr;
 }
@@ -31,8 +27,4 @@ List_Item & List_Item::operator =(const List_Item  list_item1)
 	std::cout << "Nie wywolam sie" << std::endl;
 	return *this;
 }
-void List_Item::forward()
-{
-
-}
-//List_Item::~List_Item(){}
+List_Item::~List_Item(){ std::cout << "destruktor klasy List_Item" << std::endl; }

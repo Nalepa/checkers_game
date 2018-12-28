@@ -649,15 +649,24 @@ bool Board::check_move_posibility(const field_index &temp_index) // tylko do spr
 	}
 	else // dama
 	{
-		if (Tab[index(temp_index, size)].Pawn_ptr->get_colour() == white) // biala dama
+		if (temp_index.column + 1 < size && temp_index.line - 1 >= 0)
 		{
-
+			if (Tab[index(temp_index.column + 1, temp_index.line - 1, size)].Pawn_ptr == nullptr) return true; //-7 
 		}
-		else // czarna dama
+		if (temp_index.column - 1 >= 0 && temp_index.line - 1 >= 0)
 		{
-
+			if (Tab[index(temp_index.column - 1, temp_index.line - 1, size)].Pawn_ptr == nullptr) return true; //-9
 		}
-	}
+		if (temp_index.column - 1 >= 0 && temp_index.line + 1 < size)
+		{
+			if (Tab[index(temp_index.column - 1, temp_index.line + 1, size)].Pawn_ptr == nullptr) return true; //+7 
+		}
+		if (temp_index.column + 1 < size && temp_index.line + 1 < size)
+		{
+			if (Tab[index(temp_index.column + 1, temp_index.line + 1, size)].Pawn_ptr == nullptr) return true; //+9
+		}
+		return false;
+		}
 }
 bool Board::check_clashing_posibility(const field_index &second_index) //dla pojedynczej figury
 {
@@ -909,18 +918,9 @@ Board & Board::operator =(const Board& board1)
 	}
 	return *this;
 }
-//Board::~Board()
-//{
-	/*
-	for (int line = 0; line < size; line++)
-	{
-		for (int column = 0; column < size; column++)
-		{
-			if (Tab[index(column, line, size)].Pawn_ptr != nullptr) delete Tab[index(column, line, size)].Pawn_ptr;
-			Tab[index(column, line, size)].Pawn_ptr = nullptr;
-		}
-	}
-	delete [] Tab;
-	*/
-//}
+Board::~Board()
+{
+	std::cout << "destruktor klasy Board" << std::endl;
+	delete[] Tab;
+}
 

@@ -5,13 +5,13 @@
 class Board
 {
 	
-//public:
+public:
 	const int size = 8;
 	const int number_of_pawns = 24;
 	Field* Tab;
 	sf::Texture texture;
 	sf::Sprite checkers_board;
-public:
+
 	Board(std::string file);
 	void initial_positions();
 	field_index check_mouse_position(const int &mouse_position_x, const int &mouse_position_y);
@@ -22,9 +22,5 @@ public:
 	void check_clashing_posibility();
 	bool check_clashing_posibility(const field_index &second_index);
 	bool check_move_posibility(const field_index &temp_index);
-	//~Board();
-	friend class Game;
-	friend class List_Item;
-	friend class Game_Saving;
-	friend class Game_Loading;
+	~Board();
 };

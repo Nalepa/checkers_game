@@ -16,7 +16,7 @@ void Field::set_default_circle_position(float x, float y)
 }
 void Field::add_pawn( type_of_pawn type_pom ,colour_of_pawn colour_pom)
 {
-	Pawn_ptr = new Pawn{ colour_pom,type_pom,default_circle_position_x,default_circle_position_y };
+	Pawn_ptr = new Pawn{ colour_pom, type_pom, default_circle_position_x, default_circle_position_y };
 }
 void Field::clash()
 {
@@ -38,9 +38,14 @@ Field & Field::operator=(const Field &field1)
 	}
 	return *this;
 }
-//Field::~Field()
-//{
-//	delete Pawn_ptr;
-//}
+Field::~Field()
+{
+	if (Pawn_ptr != nullptr)
+	{
+		delete Pawn_ptr;
+		Pawn_ptr = nullptr;
+	}
+	std::cout << "destruktor klasy Field" << std::endl;
+}
 
 
