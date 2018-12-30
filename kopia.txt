@@ -1,6 +1,0 @@
-sf::Event game_event;
-	sf::Vector2i mouse_position;
-	bool is_move = false;
-	field_index first_index;
-	during_the_beating = false;
-	int dx = 0, dy = 0;
