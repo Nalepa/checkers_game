@@ -920,7 +920,6 @@ Board & Board::operator =(const Board& board1)
 }
 Board::~Board()
 {
-	std::cout << "destruktor klasy Board" << std::endl;
 	delete[] Tab;
 }
 

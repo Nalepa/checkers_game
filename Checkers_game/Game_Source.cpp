@@ -60,7 +60,7 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 	if(choice == 1) add_new_game();
 	else if(choice == 2) load_game("auto_save_data.txt");
 	else load_game("save_data.txt");
-	Head->Actual_Board.Display();
+	Head->Actual_Board.Display(); // pomocnicze na konsoli
 
 	while (game_window.isOpen())
 	{
@@ -345,7 +345,6 @@ void Game::check_pawn_to_queen_transformation(const field_index &temp_index)
 }
 Game::~Game()
 {
-	std::cout << "destruktor klasy Game" << std::endl;
 	List_Item *Temp;
 	while (Head != nullptr)
 	{

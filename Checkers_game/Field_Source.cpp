@@ -45,7 +45,6 @@ Field::~Field()
 		delete Pawn_ptr;
 		Pawn_ptr = nullptr;
 	}
-	std::cout << "destruktor klasy Field" << std::endl;
 }
 
 

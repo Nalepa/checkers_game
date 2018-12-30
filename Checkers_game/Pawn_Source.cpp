@@ -64,4 +64,4 @@ void Pawn::pawn_to_queen_transformation()
 	std::cout << "Zmieniam na dame" << std::endl;
 	type = queen;
 }
-Pawn::~Pawn(){ std::cout << "destruktor klasy Pawn" << std::endl; }
+Pawn::~Pawn(){}

@@ -1,21 +1,12 @@
-﻿  Board_Source.cpp
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\board_source.cpp(16): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\board_source.cpp(23): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  Game_Source.cpp
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(84): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(105): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(109): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(114): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(118): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(127): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(154): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(155): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(175): warning C4244: "argument": konwersja z "int" do "const float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(218): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(219): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(220): warning C4244: "argument": konwersja z "int" do "const float", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(234): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(235): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\game_source.cpp(236): warning C4244: "argument": konwersja z "int" do "const float", możliwa utrata danych
-  Generowanie kodu...
+﻿  Menu_Source.cpp
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(66): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(73): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(77): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(82): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(86): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(90): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(135): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(142): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(145): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+e:\studia\pk3\projekt\checkers_game_vol4\checkers_game\menu_source.cpp(152): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Checkers_game.vcxproj -> E:\Studia\PK3\Projekt\Checkers_game_vol4\Debug\Checkers_game.exe

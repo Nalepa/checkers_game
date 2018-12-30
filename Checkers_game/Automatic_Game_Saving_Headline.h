@@ -8,7 +8,7 @@ class Automatic_Game_Saving : public Game_Saving
 	bool statement_time;
 public:
 	Automatic_Game_Saving();
-	void set(std::string file_name1, List_Item* Head1);
+	void set(std::string file_name1, List_Item* Ptr1);
 	bool check_time();
 	bool get_statement_time();
 	~Automatic_Game_Saving();

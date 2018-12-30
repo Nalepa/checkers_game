@@ -2,10 +2,10 @@
 #include "Automatic_Game_Saving_Headline.h"
 
 Automatic_Game_Saving::Automatic_Game_Saving() :statement_time(false) {};
-void Automatic_Game_Saving::set(std::string file_name1, List_Item* Head1)
+void Automatic_Game_Saving::set(std::string file_name1, List_Item* Ptr1)
 {
 	file_name = file_name1;
-	Head = Head1;
+	Ptr = Ptr1;
 }
 bool Automatic_Game_Saving::check_time()
 {

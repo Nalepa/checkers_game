@@ -162,4 +162,4 @@ void Menu::loading_menu()
 		game_window.display();
 	}
 }
-Menu::~Menu() {}
+Menu::~Menu(){}
