@@ -22,7 +22,7 @@ Menu::Menu(sf::ContextSettings settings) :  game_window(sf::VideoMode(900, 700, 
 	text[0].setString("Menu");
 	text[0].setFont(font);
 	text[0].setCharacterSize(50);
-	text[0].setPosition(400, 0);
+	text[0].setPosition(380, 15);
 	text[0].setFillColor(sf::Color::Black);
 
 	text[1].setString("Nowa gra");
@@ -90,7 +90,7 @@ void Menu::main_menu()
 		else if (rectangle[2].getGlobalBounds().contains(mouse_position.x, mouse_position.y) == true) rectangle[2].setFillColor(sf::Color::Green);
 		else rectangle[2].setFillColor(sf::Color::Blue);
 		
-		game_window.clear(sf::Color(255, 0, 255));
+		game_window.clear(sf::Color(156, 164, 214));
 		game_window.draw(rectangle[0]);
 		game_window.draw(rectangle[1]);
 		game_window.draw(rectangle[2]);
@@ -153,7 +153,7 @@ void Menu::loading_menu()
 			else rectangle[1].setFillColor(sf::Color::Blue);
 			
 		}
-		game_window.clear(sf::Color(255, 0, 255));
+		game_window.clear(sf::Color(156, 164, 214));
 		game_window.draw(rectangle[0]);
 		game_window.draw(rectangle[1]);
 		game_window.draw(text[0]);

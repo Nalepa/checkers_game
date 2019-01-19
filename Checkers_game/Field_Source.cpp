@@ -25,16 +25,19 @@ void Field::clash()
 }
 Field & Field::operator=(const Field &field1)
 {
-	field_position_x1 = field1.field_position_x1;
-	field_position_x2 = field1.field_position_x2;
-	field_position_y1 = field1.field_position_y1;
-	field_position_y2 = field1.field_position_y2;
-	default_circle_position_x = field1.default_circle_position_x;
-	default_circle_position_y = field1.default_circle_position_y;
-	if (field1.Pawn_ptr == nullptr) Pawn_ptr = nullptr;
-	else
+	if (this != &field1)
 	{
-			Pawn_ptr = new Pawn{field1.Pawn_ptr->get_colour(), field1.Pawn_ptr->get_type(), default_circle_position_x,default_circle_position_y };
+		field_position_x1 = field1.field_position_x1;
+		field_position_x2 = field1.field_position_x2;
+		field_position_y1 = field1.field_position_y1;
+		field_position_y2 = field1.field_position_y2;
+		default_circle_position_x = field1.default_circle_position_x;
+		default_circle_position_y = field1.default_circle_position_y;
+		if (field1.Pawn_ptr == nullptr) Pawn_ptr = nullptr;
+		else
+		{
+			Pawn_ptr = new Pawn{ field1.Pawn_ptr->get_colour(), field1.Pawn_ptr->get_type(), default_circle_position_x,default_circle_position_y };
+		}
 	}
 	return *this;
 }

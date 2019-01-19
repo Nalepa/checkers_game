@@ -5,7 +5,7 @@
 #include"Automatic_Game_Saving_Headline.h"
 #include "Game_Loading_Headline.h"
 
-Game::Game():Head(new List_Item), during_the_beating(false), is_move(false), dx(0), dy(0)
+Game::Game():Ptr(new List_Item), during_the_beating(false), is_move(false), dx(0), dy(0)
 {
 	if (!font.loadFromFile("contm.ttf")) std::cout << "Nie udalo sie poprawnie wczytac czcionki" << std::endl;
 
@@ -51,7 +51,7 @@ Game::Game():Head(new List_Item), during_the_beating(false), is_move(false), dx(
 	rectangle[2].setPosition(15, 350);
 	rectangle[2].setFillColor(sf::Color::Blue);
 
-	Head->Actual_Board.checkers_board.setPosition(sf::Vector2f(150, 70));
+	Ptr->Actual_Board.checkers_board.setPosition(sf::Vector2f(150, 70));
 }
 void Game::play(sf::RenderWindow &game_window, const int &choice)
 {
@@ -60,20 +60,20 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 	if(choice == 1) add_new_game();
 	else if(choice == 2) load_game("auto_save_data.txt");
 	else load_game("save_data.txt");
-	Head->Actual_Board.Display(); // pomocnicze na konsoli
+	Ptr->Actual_Board.Display(); // pomocnicze na konsoli
 
 	while (game_window.isOpen())
 	{
-		if (Head->Previous == nullptr)
+		if (Ptr->Previous == nullptr)
 		{
-			Head->add_board();
-			Head = Head->Next;
-			Head->Actual_Board.check_clashing_posibility();
+			Ptr->add_board();
+			Ptr = Ptr->Next;
+			Ptr->Actual_Board.check_clashing_posibility();
 			statement_change();
 		}
 		if (auto_save.check_time() == true)
 		{
-			auto_save.set("auto_save_data.txt", Head);
+			auto_save.set("auto_save_data.txt", Ptr);
 			auto_save.Save();
 		}
 		mouse_position = sf::Mouse::getPosition(game_window);
@@ -83,19 +83,19 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 			//obsluga przycisku cofnij
 			if (rectangle[0].getGlobalBounds().contains(mouse_position.x, mouse_position.y) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				if (Head->Previous->Previous != nullptr)
+				if (Ptr->Previous->Previous != nullptr)
 				{
-					if (during_the_beating == true) Head = Head->Previous;
-					else Head = Head->Previous->Previous;
-					Head->delete_last_board();
-					Head->add_board();
-					Head = Head->Next;
+					if (during_the_beating == true) Ptr = Ptr->Previous;
+					else Ptr = Ptr->Previous->Previous;
+					Ptr->delete_last_board();
+					Ptr->add_board();
+					Ptr = Ptr->Next;
 					for (int i = 0; i < size*size; i++)
 					{
-						if (Head->Actual_Board.Tab[i].Pawn_ptr == nullptr) continue;
-						float x_pos = Head->Actual_Board.Tab[i].default_circle_position_x;
-						float y_pos = Head->Actual_Board.Tab[i].default_circle_position_y;
-						Head->Actual_Board.Tab[i].Pawn_ptr->Circle_set_position(x_pos, y_pos);
+						if (Ptr->Actual_Board.Tab[i].Pawn_ptr == nullptr) continue;
+						float x_pos = Ptr->Actual_Board.Tab[i].default_circle_position_x;
+						float y_pos = Ptr->Actual_Board.Tab[i].default_circle_position_y;
+						Ptr->Actual_Board.Tab[i].Pawn_ptr->Circle_set_position(x_pos, y_pos);
 					}
 					during_the_beating = false;
 					statement_change();
@@ -108,7 +108,7 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 			//obsluga przycisku zapisz
 			if (rectangle[1].getGlobalBounds().contains(mouse_position.x, mouse_position.y) == true && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				Game_Saving save{ "save_data.txt", Head };
+				Game_Saving save{ "save_data.txt", Ptr };
 				save.Save();
 			}
 			else if (rectangle[1].getGlobalBounds().contains(mouse_position.x, mouse_position.y) == true) rectangle[1].setFillColor(sf::Color::Green);
@@ -144,15 +144,15 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 								{
 									for(int column = 0; column < size; column++)
 									{
-										if (Head->Actual_Board.Tab[index(column,line,size)].Pawn_ptr != nullptr)
+										if (Ptr->Actual_Board.Tab[index(column,line,size)].Pawn_ptr != nullptr)
 										{
-											if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_getGlobalBounds_contains(mouse_position.x, mouse_position.y) == true)
+											if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_getGlobalBounds_contains(mouse_position.x, mouse_position.y) == true)
 											{
 												is_move = true;
 												first_index.column = column;
 												first_index.line = line;
-												dx = mouse_position.x - Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_get_position_x();
-												dy = mouse_position.y - Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_get_position_y();
+												dx = mouse_position.x - Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_get_position_x();
+												dy = mouse_position.y - Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->Circle_get_position_y();
 											}
 										}
 									}
@@ -168,16 +168,15 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 								{
 									is_move = false;
 									
-									movement_support(first_index, Head->Actual_Board.check_mouse_position(mouse_position.x, mouse_position.y));
+									movement_support(first_index, Ptr->Actual_Board.check_mouse_position(mouse_position.x, mouse_position.y));
 								}
 							}
 						}
-						if (is_move == true) Head->Actual_Board.Tab[index(first_index.column,first_index.line,size)].Pawn_ptr->Circle_set_position(mouse_position.x - dx, mouse_position.y - dy);
+						if (is_move == true) Ptr->Actual_Board.Tab[index(first_index.column,first_index.line,size)].Pawn_ptr->Circle_set_position(mouse_position.x - dx, mouse_position.y - dy);
 					}
 					
-			game_window.clear(sf::Color(255, 0, 255));
-			game_window.draw(Head->Actual_Board.checkers_board);
-			
+			game_window.clear(sf::Color(156, 164, 214));
+			game_window.draw(Ptr->Actual_Board.checkers_board);
 			game_window.draw(rectangle[0]);
 			game_window.draw(rectangle[1]);
 			game_window.draw(rectangle[2]);
@@ -192,48 +191,47 @@ void Game::play(sf::RenderWindow &game_window, const int &choice)
 			}
 			for (int i = 0; i < size * size; i++)
 			{
-				if (Head->Actual_Board.Tab[i].Pawn_ptr == nullptr) continue;
-				Head->Actual_Board.Tab[i].Pawn_ptr->draw(game_window);
+				if (Ptr->Actual_Board.Tab[i].Pawn_ptr == nullptr) continue;
+				Ptr->Actual_Board.Tab[i].Pawn_ptr->draw(game_window);
 			}
 			game_window.display();
 		}
 	}
 void Game::add_new_game()
 {
-	Head->Actual_Board.initial_positions();
+	Ptr->Actual_Board.initial_positions();
 }
 void Game::load_game(const std::string &file_name)
 {
 	Game_Loading game_loading{ file_name };
-	Head = game_loading.Load();
+	Ptr = game_loading.Load();
 }
 void Game::movement_support(const field_index &first_index, const field_index &second_index)
 {
 	std::cout << index(first_index, size) << " " << index(second_index,size) << std::endl;
-	Head->Actual_Board.check_clashing_posibility();
+	Ptr->Actual_Board.check_clashing_posibility();
 	
 	
-		if (Head->Actual_Board.check_move(first_index, second_index, Head->next_move_colour, during_the_beating, beating_pawn) == false)
+		if (Ptr->Actual_Board.check_move(first_index, second_index, Ptr->next_move_colour, during_the_beating, beating_pawn) == false)
 		{
-			int circle_pom_x = Head->Actual_Board.Tab[index(first_index, size)].default_circle_position_x;
-			int circle_pom_y = Head->Actual_Board.Tab[index(first_index, size)].default_circle_position_y;
-			Head->Actual_Board.Tab[index(first_index, size)].Pawn_ptr->Circle_set_position(circle_pom_x, circle_pom_y);
+			int circle_pom_x = Ptr->Actual_Board.Tab[index(first_index, size)].default_circle_position_x;
+			int circle_pom_y = Ptr->Actual_Board.Tab[index(first_index, size)].default_circle_position_y;
+			Ptr->Actual_Board.Tab[index(first_index, size)].Pawn_ptr->Circle_set_position(circle_pom_x, circle_pom_y);
 		}
 		else
 		{
 			if (during_the_beating == false)
 			{
 				check_pawn_to_queen_transformation(second_index);
-				Head->Actual_Board;
-				Head->add_board();
-				Head = Head->Next;
-				
+				Ptr->Actual_Board;
+				Ptr->add_board();
+				Ptr = Ptr->Next;
 			}
 			else
 			{
-				int circle_pom_x = Head->Actual_Board.Tab[index(second_index, size)].default_circle_position_x;
-				int circle_pom_y = Head->Actual_Board.Tab[index(second_index, size)].default_circle_position_y;
-				Head->Actual_Board.Tab[index(second_index, size)].Pawn_ptr->Circle_set_position(circle_pom_x, circle_pom_y);
+				int circle_pom_x = Ptr->Actual_Board.Tab[index(second_index, size)].default_circle_position_x;
+				int circle_pom_y = Ptr->Actual_Board.Tab[index(second_index, size)].default_circle_position_y;
+				Ptr->Actual_Board.Tab[index(second_index, size)].Pawn_ptr->Circle_set_position(circle_pom_x, circle_pom_y);
 			}
 
 		}
@@ -243,7 +241,7 @@ void Game::movement_support(const field_index &first_index, const field_index &s
 }
 void Game::statement_change()
 {
-	if (Head->next_move_colour == white)
+	if (Ptr->next_move_colour == white)
 	{
 
 		text[0].setString("Ruch maja pionki biale");
@@ -263,9 +261,9 @@ void Game::check_result()
 	{
 		for (int column = 0; column < size; column++)
 		{
-			if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
+			if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
 			{
-				if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == white) number_of_white++;
+				if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == white) number_of_white++;
 				else number_of_black++;
 			}
 		}
@@ -285,20 +283,20 @@ void Game::check_result()
 		return;
 	}
 	field_index temp_index;
-	if (Head->next_move_colour == white) // ruch maja biale
+	if (Ptr->next_move_colour == white) // ruch maja biale
 	{
 		for (int line = 0; line < size; line++)
 		{
 			for (int column = 0; column < size; column++)
 			{
-				if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
+				if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
 				{
-					if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == white)
+					if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == white)
 					{
 						temp_index.column = column;
 						temp_index.line = line;
-						if (Head->Actual_Board.check_clashing_posibility(temp_index) == true) return;
-						if (Head->Actual_Board.check_move_posibility(temp_index) == true) return;
+						if (Ptr->Actual_Board.check_clashing_posibility(temp_index) == true) return;
+						if (Ptr->Actual_Board.check_move_posibility(temp_index) == true) return;
 					}
 				}
 			}
@@ -310,20 +308,20 @@ void Game::check_result()
 		{
 			for (int column = 0; column < size; column++)
 			{
-				if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
+				if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr != nullptr)
 				{
-					if (Head->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == black)
+					if (Ptr->Actual_Board.Tab[index(column, line, size)].Pawn_ptr->get_colour() == black)
 					{
 						temp_index.column = column;
 						temp_index.line = line;
-						if (Head->Actual_Board.check_clashing_posibility(temp_index) == true) return;
-						if (Head->Actual_Board.check_move_posibility(temp_index) == true) return;
+						if (Ptr->Actual_Board.check_clashing_posibility(temp_index) == true) return;
+						if (Ptr->Actual_Board.check_move_posibility(temp_index) == true) return;
 					}
 				}
 			}
 		}
 	}
-	if (Head->next_move_colour == white) text[0].setString("Wygrywaja czarne (biale zablokowane)");
+	if (Ptr->next_move_colour == white) text[0].setString("Wygrywaja czarne (biale zablokowane)");
 	else text[0].setString("Wygrywaja biale (czarne zablokowane)");
 
 	text[0].setPosition(25, 0);
@@ -331,25 +329,25 @@ void Game::check_result()
 }
 void Game::check_pawn_to_queen_transformation(const field_index &temp_index)
 {
-	if (Head->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->get_type() == pawn)
+	if (Ptr->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->get_type() == pawn)
 	{
-		if (Head->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->get_colour() == white) // bialy pionek
+		if (Ptr->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->get_colour() == white) // bialy pionek
 		{
-			if (temp_index.line == 0) Head->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->pawn_to_queen_transformation();
+			if (temp_index.line == 0) Ptr->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->pawn_to_queen_transformation();
 		}
 		else // czarny pionek
 		{
-			if (temp_index.line == size - 1)  Head->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->pawn_to_queen_transformation();
+			if (temp_index.line == size - 1)  Ptr->Actual_Board.Tab[index(temp_index, size)].Pawn_ptr->pawn_to_queen_transformation();
 		}
 	}
 }
 Game::~Game()
 {
 	List_Item *Temp;
-	while (Head != nullptr)
+	while (Ptr != nullptr)
 	{
-		Temp = Head;
-		Head = Temp->Previous;
+		Temp = Ptr;
+		Ptr = Temp->Previous;
 		delete Temp;
 	}
 }

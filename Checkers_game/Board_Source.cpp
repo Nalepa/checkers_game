@@ -908,13 +908,16 @@ void Board::Display()
 }
 Board & Board::operator =(const Board& board1)
 {
-	texture = board1.texture;
-	checkers_board = board1.checkers_board;
-
-	Tab = new Field[size*size];
-	for (int i = 0; i < size*size; i++)
+	if (this != &board1)
 	{
-		Tab[i] = board1.Tab[i];
+		texture = board1.texture;
+		checkers_board = board1.checkers_board;
+
+		Tab = new Field[size * size];
+		for (int i = 0; i < size * size; i++)
+		{
+			Tab[i] = board1.Tab[i];
+		}
 	}
 	return *this;
 }

@@ -10,4 +10,4 @@ public:
 	List_Item* Load();
 	~Game_Loading();
 };
-std::istream & operator >>(std::istream & input, List_Item* Head);
+std::istream & operator >>(std::istream & input, List_Item *Ptr);

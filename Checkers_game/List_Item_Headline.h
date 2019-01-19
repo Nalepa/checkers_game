@@ -12,6 +12,6 @@ public:
 	List_Item();
 	void add_board();
 	void delete_last_board();
-	List_Item & operator =(const List_Item list_item1);
+	List_Item & operator =(const List_Item &list_item1);
 	~List_Item();
 };

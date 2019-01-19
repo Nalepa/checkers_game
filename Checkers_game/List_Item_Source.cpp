@@ -17,12 +17,15 @@ void List_Item::delete_last_board()
 	delete Next;
 	Next = nullptr;
 }
-List_Item & List_Item::operator =(const List_Item  list_item1)
+List_Item & List_Item::operator =(const List_Item &list_item1)
 {
-	next_move_colour = list_item1.next_move_colour;
-	Previous = list_item1.Previous;
-	Next = list_item1.Next;
-	Actual_Board = list_item1.Actual_Board;
+	if (this != &list_item1)
+	{
+		next_move_colour = list_item1.next_move_colour;
+		Previous = list_item1.Previous;
+		Next = list_item1.Next;
+		Actual_Board = list_item1.Actual_Board;
+	}
 	return *this;
 }
 List_Item::~List_Item(){}

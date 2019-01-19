@@ -5,7 +5,7 @@ class Game
 {
 	int dx, dy;
 	const int size = 8;
-	List_Item* Head;
+	List_Item *Ptr;
 	sf::Font font;
 	sf::Text text[5];
 	sf::RectangleShape rectangle[3];

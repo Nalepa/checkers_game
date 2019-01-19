@@ -5,21 +5,21 @@
 Game_Loading::Game_Loading(std::string file_name): file_name(file_name){}
 List_Item* Game_Loading::Load()
 {
-	List_Item* Head = new List_Item;
+	List_Item* Ptr = new List_Item;
 	file.open(file_name);
-	if (file.good()) file >> Head;
+	if (file.good()) file >> Ptr;
 	else std::cout << "Blad pliku" << std::endl;
 	file.close();
-	Head->Actual_Board.checkers_board.setPosition(sf::Vector2f(150, 70));
-	return Head;
+	Ptr->Actual_Board.checkers_board.setPosition(sf::Vector2f(150, 70));
+	return Ptr;
 }
-std::istream & operator >>(std::istream & input, List_Item*  Head)
+std::istream & operator >>(std::istream & input, List_Item *Ptr)
 {
 	std::string line;
 	getline(input, line);
-	if (line[0] == 'b') Head->next_move_colour = black;
-	else Head->next_move_colour = white;
-	int size = pow(Head->Actual_Board.size, 2);
+	if (line[0] == 'b') Ptr->next_move_colour = black;
+	else Ptr->next_move_colour = white;
+	int size = pow(Ptr->Actual_Board.size, 2);
 	for (int i = 0; i < size; i++)
 	{
 		char temp1 = line[i + 1];
@@ -37,27 +37,27 @@ std::istream & operator >>(std::istream & input, List_Item*  Head)
 		{
 		case 0:
 		{
-			Head->Actual_Board.Tab[i].Pawn_ptr = nullptr;
+			Ptr->Actual_Board.Tab[i].Pawn_ptr = nullptr;
 			break;
 		}
 		case 1:
 		{
-			Head->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ white, pawn, Head->Actual_Board.Tab[i].default_circle_position_x, Head->Actual_Board.Tab[i].default_circle_position_y };
+			Ptr->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ white, pawn, Ptr->Actual_Board.Tab[i].default_circle_position_x, Ptr->Actual_Board.Tab[i].default_circle_position_y };
 			break;
 		}
 		case 2:
 		{
-			Head->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ white, queen, Head->Actual_Board.Tab[i].default_circle_position_x, Head->Actual_Board.Tab[i].default_circle_position_y };
+			Ptr->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ white, queen, Ptr->Actual_Board.Tab[i].default_circle_position_x, Ptr->Actual_Board.Tab[i].default_circle_position_y };
 			break;
 		}
 		case 3:
 		{
-			Head->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ black, pawn, Head->Actual_Board.Tab[i].default_circle_position_x, Head->Actual_Board.Tab[i].default_circle_position_y };
+			Ptr->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ black, pawn, Ptr->Actual_Board.Tab[i].default_circle_position_x, Ptr->Actual_Board.Tab[i].default_circle_position_y };
 			break;
 		}
 		case 4:
 		{
-			Head->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ black, queen, Head->Actual_Board.Tab[i].default_circle_position_x, Head->Actual_Board.Tab[i].default_circle_position_y };
+			Ptr->Actual_Board.Tab[i].Pawn_ptr = new Pawn{ black, queen, Ptr->Actual_Board.Tab[i].default_circle_position_x, Ptr->Actual_Board.Tab[i].default_circle_position_y };
 			break;
 		}
 		}

@@ -6,7 +6,7 @@ class Field
 public:
 	int field_position_x1, field_position_x2, field_position_y1, field_position_y2;
 	float default_circle_position_x, default_circle_position_y;
-	Pawn* Pawn_ptr;
+	Pawn *Pawn_ptr;
 	
 	Field();
 	Field & operator=(const Field &field1);

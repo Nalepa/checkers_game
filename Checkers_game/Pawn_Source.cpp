@@ -24,7 +24,6 @@ void Pawn::set_colour(const colour_of_pawn &colour_pom)
 {
 	colour = colour_pom;
 }
-
 void Pawn::set_type(const type_of_pawn & type_pom)
 {
 	type = type_pom;
@@ -48,7 +47,6 @@ float Pawn::Circle_get_position_y()
 bool Pawn::Circle_getGlobalBounds_contains(const int &mouse_position_x, const int& mouse_position_y)
 {
 	return Circle.getGlobalBounds().contains(mouse_position_x, mouse_position_y);
-	
 }
 void Pawn::draw(sf::RenderWindow &game_window)
 {
